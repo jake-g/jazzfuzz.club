@@ -1,59 +1,72 @@
+// Load the YouTube iframe API script
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var players = [];
+// Load YouTube iframe players
+var currentVideoPlayer = null;
+var videoPlayers = [];
 function onYouTubeIframeAPIReady() {
-  var playerContainers = document.getElementsByClassName('playerContainer');
+  var playerContainers = document.getElementsByClassName('youtubePlayer');
   for (var i = 0; i < playerContainers.length; i++) {
-    var playlistId = playerContainers[i].getAttribute('data-playlist-id');
+    var youtubeId = playerContainers[i].getAttribute('data-id');
     var player = new YT.Player(playerContainers[i], {
-
+      height: '315',
+      width: '560',
       playerVars: {
+        // see: https://developers.google.com/youtube/player_parameters
         'listType': 'playlist',
-        'list': playlistId,
-        'autoplay': 0,        // 1, video will automatically play when loaded
-        'controls': 1,        // 1, display player controls like play, pause, and volume
-        'rel': 0,             // 1, related videos will be shown at the end of a video playback
-        'showinfo': 0,        // 1, display video information like video title and uploader's username
-        'modestbranding': 1,  // 1, dont load youtube log
+        'list': youtubeId,
+        'loading': 'lazy',
+        'frameborder': 0,
+        'playsinline': 1,
+        'allowfullscreen': 1,
+        'autoplay': 0,
+        'controls': 1,
+        'rel': 0,
+        'showinfo': 0,
+        'modestbranding': 1,
       },
     });
-    players.push(player);
-    player.addEventListener('play', function() {
-      pauseOtherPlayers(this);
+    videoPlayers.push(player);
+
+    player.addEventListener('onStateChange', function (event) {
+      // Stop currently playing video when new video is started.
+      if (event.data === YT.PlayerState.PLAYING) {
+        if (currentVideoPlayer !== null && currentVideoPlayer !== event.target) {
+          currentVideoPlayer.pauseVideo();
+        }
+        currentVideoPlayer = event.target;
+        // Play next video when current playing video ends.
+      } else if (event.data === YT.PlayerState.ENDED) {
+        var index = videoPlayers.indexOf(event.target);
+        if (index < videoPlayers.length - 1) {
+          videoPlayers[index + 1].playVideo();
+        }
+      }
     });
   }
 }
 
-function pauseOtherPlayers(currentPlayer) {
-  for (var i = 0; i < players.length; i++) {
-    if (players[i] !== currentPlayer) {
-      players[i].pauseVideo();
-    }
-  }
-}
-
-
-// // Buttons toggled onload
-// $(document).ready(function () {
-//   $("#collapse-main").trigger("click");
-// });
 
 // Buttons
 $(document).ready(function () {
+  // Trigger click on page load
+  $("#collapse-main").trigger("click");
   $("#collapse-main").click(function () {
+    $(this).toggleClass('inverted');
     $("main").slideToggle("slow");
   });
 });
 
 $(document).ready(function () {
   $("#sort-artist-button").click(function () {
-    var posts = $("#blog-posts").children("article");
+    $(this).toggleClass('inverted');
+    var posts = $("#posts").children("article");
     posts.sort(function (a, b) {
-      var artistA = $(a).find("header h3:contains('Artist')").text().trim().split(": ").pop().toUpperCase();
-      var artistB = $(b).find("header h3:contains('Artist')").text().trim().split(": ").pop().toUpperCase();
+      var artistA = $(a).find("header h3:contains('By')").text().trim().split(": ").pop().toUpperCase();
+      var artistB = $(b).find("header h3:contains('By')").text().trim().split(": ").pop().toUpperCase();
       if (artistA < artistB) {
         return -1;
       }
@@ -62,18 +75,19 @@ $(document).ready(function () {
       }
       return 0;
     });
-    $("#blog-posts").empty().append(posts);
+    $("#posts").empty().append(posts);
   });
 });
 
 $(document).ready(function () {
   $("#sort-year-button").click(function () {
-    var posts = $("#blog-posts").children("article");
+    $(this).toggleClass('inverted');
+    var posts = $("#posts").children("article");
     posts.sort(function (a, b) {
       var yearA = $(a).find("header h3:contains('Released:')").text().trim().split(" ").pop();
       var yearB = $(b).find("header h3:contains('Released:')").text().trim().split(" ").pop();
       return yearA - yearB;
     });
-    $("#blog-posts").empty().append(posts);
+    $("#posts").empty().append(posts);
   });
 });

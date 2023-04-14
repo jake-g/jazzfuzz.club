@@ -17,6 +17,13 @@ header {
   padding: 20px;
 }
 
+footer {
+  background-color: #333;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
 main {
   padding: 20px;
 }
@@ -34,18 +41,24 @@ h1 {
 
 h2 {
   margin-top: 0;
+  margin-bottom: 4px;
 }
 
 h3 {
   margin-top: 0;
-  margin-bottom: 0px;
+  margin-bottom: 1px;
 
+}
+
+/* hide by default */
+main {
+  display: none;
 }
 
 nav {
   position: fixed;
   text-align: right;
-  padding-right: 20px;
+  padding-right: 5%;
   top: 0;
   width: 100%;
   z-index: 999;
@@ -75,26 +88,31 @@ nav ul li a:hover {
 button {
   color: #fff;
   background-color: #666;
+  padding: 5px;
 }
 
-.video-container {
+button:active {
+  background-color: #333;
+  color: #666;
+}
+
+button.inverted {
+  background-color: #fff;
+  color: #333;
+}
+
+/* maximize width but keep 16:9 aspect ratio */
+.playerContainer {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
-  overflow: hidden;
+  width: 100%;
 }
 
-.video-container iframe {
+.playerContainer iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-footer {
-  background-color: #333;
-  padding: 20px;
-  text-align: center;
-  color: #fff;
 }

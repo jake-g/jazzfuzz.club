@@ -7,37 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@latest/dist/lazyload.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
 
 </head>
 
 <body>
   <header>
-    <h2>Jazz Fuzz</h2>
+    <h1>Jazz Fuzz</h1>
     <nav>
       <ul>
         <li><a href="#"><button id="sort-artist-button">Sort by Artist</button></a></li>
         <li><a href="#"><button id="sort-year-button">Sort by Year</button></a></li>
-        <li><a href="#"><button id="collapse-main">Toggle Details</button></a></li>
+        <li><a href="#"><button id="collapse-main">Show Details</button></a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="blog-posts" onload="document.getElementById('collapse-main').click();">
+  <section id="posts">
     <article>
       <header>
         <h2>Head Hunters</h2>
-        <h3>Released: October 13, 1973</h3>
-        <h3>Artist: Herbie Hancock</h3>
+        <h3>By: Herbie Hancock</h3>
+        <h3>Released: October, 1973</h3>
         <h3>Genre: Jazz, Funk</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_m789U0dt-J4aLVd7p-dXJxSfDliep-NT0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_m789U0dt-J4aLVd7p-dXJxSfDliep-NT0"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -83,16 +78,12 @@
     <article>
       <header>
         <h2>Idle Moments</h2>
-        <h3>Released: January 1965</h3>
-        <h3>Artist: Grant Green</h3>
+        <h3>By: Grant Green</h3>
+        <h3>Released: January, 1965</h3>
         <h3>Genre: Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_nNi1hCGEgxpb5J0Ygl0F9gXK04YCPplnU"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_nNi1hCGEgxpb5J0Ygl0F9gXK04YCPplnU"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -144,16 +135,12 @@
     <article>
       <header>
         <h2>Getz/Gilberto</h2>
-        <h3>Released: March 1964</h3>
-        <h3>Artists: Stan Getz and João Gilberto</h3>
+        <h3>By: Stan Getz and João Gilberto</h3>
+        <h3>Released: March, 1964</h3>
         <h3>Genre: Jazz, Bossa Nova</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_lb7YNh-cPHZnacF4gw_iVI29IZ01yv_3Y"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_lb7YNh-cPHZnacF4gw_iVI29IZ01yv_3Y"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -203,16 +190,12 @@
     <article>
       <header>
         <h2>Mingus Plays Piano</h2>
+        <h3>By: Charles Mingus</h3>
         <h3>Released: December, 1963</h3>
-        <h3>Artist: Charles Mingus</h3>
         <h3>Genre: Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_nKedTprYHjd1r_7fypc2XrIPg9_mMVKCU"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_nKedTprYHjd1r_7fypc2XrIPg9_mMVKCU"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -255,17 +238,14 @@
     <article>
       <header>
         <h2>Ballads</h2>
+        <h3>By: John Coltrane</h3>
         <h3>Released: January, 1963</h3>
-        <h3>Artist: John Coltrane</h3>
         <h3>Genre: Jazz</h3>
-        <div class="video-container">
-          <iframe width="560" height="315" class="lazy" loading="lazy"
-            src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_ldaig1LwNzcDn5fr9xSAj0owxdZdarn9Q"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-          </iframe>
-        </div>
       </header>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_ldaig1LwNzcDn5fr9xSAj0owxdZdarn9Q"></div>
+      </div>
+
       <main>
         <h3>Musicians:</h3>
         <ul>
@@ -309,16 +289,12 @@
     <article>
       <header>
         <h2>The Black Saint and the Sinner Lady</h2>
-        <h3>Released: March 1963</h3>
-        <h3>Artist: Charles Mingus</h3>
+        <h3>By: Charles Mingus</h3>
+        <h3>Released: March, 1963</h3>
         <h3>Genre: Jazz, Avant-garde Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_nTX-25nrnB-Wbij8nhdibYKybjNGVUfZg"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_nTX-25nrnB-Wbij8nhdibYKybjNGVUfZg"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -364,16 +340,12 @@
     <article>
       <header>
         <h2>Undercurrent</h2>
+        <h3>By: Bill Evans & Jim Hall</h3>
         <h3>Released: June, 1962</h3>
-        <h3>Artist: Bill Evans & Jim Hall</h3>
         <h3>Genre: Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_ncJWojZXuhgC0slWz8IF4oqSMBQPL5Ivs"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_ncJWojZXuhgC0slWz8IF4oqSMBQPL5Ivs"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -412,16 +384,12 @@
     <article>
       <header>
         <h2>Time Out</h2>
-        <h3>Released: December 14, 1959</h3>
-        <h3>Artist: The Dave Brubeck Quartet</h3>
+        <h3>By: The Dave Brubeck Quartet</h3>
+        <h3>Released: December, 1959</h3>
         <h3>Genre: Jazz, Cool Jazz, West Coast Jazz, Progressive Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_kT4WsarfRaytnvA8aSj-Wq-JtcFN8JQyc"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_kT4WsarfRaytnvA8aSj-Wq-JtcFN8JQyc"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -465,16 +433,12 @@
     <article>
       <header>
         <h2>Kind of Blue</h2>
+        <h3>By: Miles Davis</h3>
         <h3>Released: August, 1959</h3>
-        <h3>Artist: Miles Davis</h3>
         <h3>Genre: Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_kQdrECE-ozwNQzDlLQT2vsgVQp8DfHElE"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_kQdrECE-ozwNQzDlLQT2vsgVQp8DfHElE"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -516,16 +480,12 @@
     <article>
       <header>
         <h2>Chet Baker Sings</h2>
+        <h3>By: Chet Baker</h3>
         <h3>Released: February, 1954</h3>
-        <h3>Artist: Chet Baker</h3>
         <h3>Genre: Jazz, Vocal Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_kvP1ruCq38BuYTpmSaN7Eh1NQ4n0cVwtY"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_kvP1ruCq38BuYTpmSaN7Eh1NQ4n0cVwtY"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -570,16 +530,12 @@
     <article>
       <header>
         <h2>Louis Armstrong Plays W.C. Handy</h2>
+        <h3>By: Louis Armstrong</h3>
         <h3>Released: September, 1954</h3>
-        <h3>Artist: Louis Armstrong</h3>
         <h3>Genre: Jazz, Dixieland</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_ldSYxSNf8rkzhDOvGEHMncufdWnwopQVs"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_ldSYxSNf8rkzhDOvGEHMncufdWnwopQVs"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -627,16 +583,12 @@
     <article>
       <header>
         <h2>John Coltrane and Johnny Hartman</h2>
+        <h3>By: John Coltrane and Johnny Hartman</h3>
         <h3>Released: March, 1963</h3>
-        <h3>Artist: John Coltrane and Johnny Hartman</h3>
         <h3>Genre: Jazz, Vocal Jazz</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_lIGZ3d9H9JFcg_2JX3BMUrk4ViFsQ5T-8"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_lIGZ3d9H9JFcg_2JX3BMUrk4ViFsQ5T-8"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -683,16 +635,12 @@
     <article>
       <header>
         <h2>Lady In Satin</h2>
+        <h3>By: Billie Holiday</h3>
         <h3>Released: June, 1958</h3>
-        <h3>Artist: Billie Holiday</h3>
         <h3>Genre: Vocal Jazz, Traditional Pop</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_kMGNXYg6vNoe9c8PmscWZQMdalfIuZDhc"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_kMGNXYg6vNoe9c8PmscWZQMdalfIuZDhc"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
@@ -741,16 +689,12 @@
     <article>
       <header>
         <h2>Masterpieces by Ellington</h2>
+        <h3>By: Duke Ellington</h3>
         <h3>Released: March, 1951</h3>
-        <h3>Artist: Duke Ellington</h3>
         <h3>Genre: Jazz, Big Band, Swing</h3>
       </header>
-      <div class="video-container">
-        <iframe width="560" height="315" class="lazy" loading="lazy"
-          src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_ntU-7DKV7G__x_hW9DkT9xffsl8RYpROQ"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameborder="0" allowfullscreen>
-        </iframe>
+      <div class="playerContainer">
+        <div class="youtubePlayer" data-id="OLAK5uy_ntU-7DKV7G__x_hW9DkT9xffsl8RYpROQ"></div>
       </div>
       <main>
         <h3>Musicians:</h3>
