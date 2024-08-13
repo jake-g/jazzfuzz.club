@@ -1,55 +1,3 @@
-// Load the YouTube iframe API script
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// Load YouTube iframe players
-var currentVideoPlayer = null;
-var videoPlayers = [];
-function onYouTubeIframeAPIReady() {
-  var playerContainers = document.getElementsByClassName('youtubePlayer');
-  for (var i = 0; i < playerContainers.length; i++) {
-    var youtubeId = playerContainers[i].getAttribute('data-id');
-    var player = new YT.Player(playerContainers[i], {
-      height: '315',
-      width: '560',
-      playerVars: {
-        // see: https://developers.google.com/youtube/player_parameters
-        'listType': 'playlist',
-        'list': youtubeId,
-        'loading': 'lazy',
-        'frameborder': 0,
-        'playsinline': 1,
-        'allowfullscreen': 1,
-        'autoplay': 0,
-        'controls': 1,
-        'rel': 0,
-        'showinfo': 0,
-        'modestbranding': 1,
-      },
-    });
-    videoPlayers.push(player);
-
-    player.addEventListener('onStateChange', function (event) {
-      // Stop currently playing video when new video is started.
-      if (event.data === YT.PlayerState.PLAYING) {
-        if (currentVideoPlayer !== null && currentVideoPlayer !== event.target) {
-          currentVideoPlayer.pauseVideo();
-        }
-        currentVideoPlayer = event.target;
-        // Play next video when current playing video ends.
-      } else if (event.data === YT.PlayerState.ENDED) {
-        var index = videoPlayers.indexOf(event.target);
-        if (index < videoPlayers.length - 1) {
-          videoPlayers[index + 1].playVideo();
-        }
-      }
-    });
-  }
-}
-
-
 // Buttons
 $(document).ready(function () {
   // Trigger click on page load
@@ -89,5 +37,70 @@ $(document).ready(function () {
       return yearA - yearB;
     });
     $("#posts").empty().append(posts);
+  });
+});
+
+// Player
+$(document).ready(function () {
+  let currentPlayer = null;
+
+  // *** GLOBAL DEBUG FLAG ***
+  const DEBUG_MODE = true;
+
+  // Helper to get a user-friendly player state name
+  function getPlayerStateName(state) {
+    const stateNames = {
+      [YT.PlayerState.UNSTARTED]: 'Unstarted',
+      [YT.PlayerState.ENDED]: 'Ended',
+      [YT.PlayerState.PLAYING]: 'Playing',
+      [YT.PlayerState.PAUSED]: 'Paused',
+      [YT.PlayerState.BUFFERING]: 'Buffering',
+      [YT.PlayerState.CUED]: 'Cued'
+    };
+    return stateNames[state] || 'Unknown';
+  }
+
+  // Helper for conditional debug logging
+  function debugLog(...args) {
+    if (DEBUG_MODE) {
+      console.log(...args);
+    }
+  }
+
+  $('.playerContainer').each(function () {
+    const playerContainer = this;
+    const player = playerContainer.querySelector('lite-youtube');
+
+    player.addEventListener('liteYoutubeIframeLoaded', function () {
+      const iframe = player.shadowRoot.querySelector('iframe');
+      const ytPlayer = new YT.Player(iframe, {
+        events: {
+          // Combined onStateChange Handler 
+          'onStateChange': function (event) {
+            // Pause Other Players on Play Logic
+            if (event.data === YT.PlayerState.PLAYING) {
+              if (currentPlayer && currentPlayer !== ytPlayer) {
+                currentPlayer.pauseVideo();
+              }
+              currentPlayer = ytPlayer;
+            } else if (event.data === YT.PlayerState.PAUSED && currentPlayer === ytPlayer) {
+              currentPlayer = null;
+            }
+            // State Change Logging 
+            debugLog(`Video State Change: [${player.videoId}] ${getPlayerStateName(event.data)}`);
+          },
+          // Other Event Listeners 
+          'onVolumeChange': function (event) {
+            debugLog(`Volume Change: [${player.videoId}] ${event.data.volume}% (muted: ${event.data.muted})`);
+          },
+          'onPlaybackQualityChange': function (event) {
+            debugLog(`Quality Change: [${player.videoId}] ${event.data}`);
+          },
+          'onPlaybackRateChange': function (event) {
+            debugLog(`Rate Change: [${player.videoId}] ${event.data}`);
+          }
+        }
+      });
+    });
   });
 });
